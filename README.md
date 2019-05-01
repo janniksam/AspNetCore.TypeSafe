@@ -123,4 +123,4 @@ public class ServiceClient : RestSharpServiceClientBase<IServiceInterface>, ISer
 ```
 
 This is just an example of how to do it on the client.
-Feel free to implement your own client by taking a peek of what I've done in the `RestSharpServiceClientBase`.
+Feel free to implement your own client by taking a peek at what I've done in the `RestSharpServiceClientBase`.

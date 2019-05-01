@@ -32,7 +32,7 @@ An exemplary client implementation of the AspNetCore.TypeSafe library using the 
 
 First of all you will have to enable this framework in your Startup.cs like shown below
 
-```
+```cs
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddMvc()
@@ -49,7 +49,7 @@ Please not, that it is mandatory to at least use the TypeNameHandling setting "A
 
 Now you can define a service interface with all the methods your api should support:
 
-```
+```cs
 public interface IServiceInterface
 {
    Task<string> Foo(string name);
@@ -58,7 +58,8 @@ public interface IServiceInterface
 ```
 
 And finally to implement the actual ServiceInterface, just implement the IServiceInterface in your Controller like this:
-```
+
+```cs
 [Route("api/[controller]")]
 [ApiController]
 public class ValuesController : ControllerBase, IServiceInterface
@@ -100,7 +101,7 @@ public class ValuesController : ControllerBase, IServiceInterface
 
 Basically, you just have to make use of the RestSharpServiceClientBase base class.
 
-```
+```cs
 public class ServiceClient : RestSharpServiceClientBase<IServiceInterface>, IServiceInterface
 {
     public ServiceClient(string url) : base(url)

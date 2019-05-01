@@ -95,3 +95,31 @@ public class ValuesController : ControllerBase, IServiceInterface
     }
 }
 ```
+
+### Client side implementation via RestSharp
+
+Basically, you just have to make use of the RestSharpServiceClientBase base class.
+
+```
+public class ServiceClient : RestSharpServiceClientBase<IServiceInterface>, IServiceInterface
+{
+    public ServiceClient(string url) : base(url)
+    {
+    }
+
+    public async Task<string> Foo(string name)
+    {
+        var request = BuildRequest(BuildParams(name));
+        return await PostAsync<string>(request).ConfigureAwait(false);
+    }
+
+    public async Task<SumResponse> Bar(SumRequest sumRequest)
+    {
+        var request = BuildRequest(BuildParams(sumRequest));
+        return await PostAsync<SumResponse>(request).ConfigureAwait(false);
+    }
+}
+```
+
+This is just an example of how to do it on the client.
+Feel free to implement your own client by taking a peek of what I've done in the RestSharpServiceClientBase.

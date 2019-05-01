@@ -7,7 +7,7 @@
     <Copyright>Copyright 2019 © janniksam</Copyright>
     <PackageLicenseUrl>https://github.com/janniksam/AspNetCore.TypeSafe/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/janniksam/AspNetCore.TypeSafe</PackageProjectUrl>
-    <Description>Core-Components of the AspNetCore.TypeSafe.</Description>
+    <Description>Core-Components of the AspNetCore.TypeSafe library.</Description>
   </PropertyGroup>
 
 </Project>

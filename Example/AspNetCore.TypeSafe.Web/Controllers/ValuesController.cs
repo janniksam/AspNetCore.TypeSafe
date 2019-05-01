@@ -18,14 +18,15 @@ namespace AspnetCore.TypeSafe.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<object> Get(TypeSafeRequestWrapper typeSafeRequestWrapper)
+        public IActionResult Get()
         {
-            return await m_resolveProvider.ResolveRequestAsync(this, typeSafeRequestWrapper?.Request);
+            return BadRequest();
         }
 
         [HttpPost]
         public async Task<object> Post(TypeSafeRequestWrapper typeSafeRequest)
         {
+            // Here happens the "magic"
             var result = await m_resolveProvider.ResolveRequestAsync(this, typeSafeRequest?.Request);
             return result;
         }

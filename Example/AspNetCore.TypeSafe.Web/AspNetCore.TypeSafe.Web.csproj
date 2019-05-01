@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\AspnetCore.TypeSafe.Server\AspnetCore.TypeSafe.Server.csproj" />
-    <ProjectReference Include="..\..\AspnetCore.TypeSafe.Test.Shared\AspNetCore.TypeSafe.Test.Shared.csproj" />
+    <ProjectReference Include="..\AspNetCore.TypeSafe.Test.Shared\AspNetCore.TypeSafe.Test.Shared.csproj" />
   </ItemGroup>
 
 </Project>

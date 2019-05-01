@@ -8,7 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\AspnetCore.TypeSafe.Client.RestSharp\AspNetCore.TypeSafe.Client.RestSharp.csproj" />
     <ProjectReference Include="..\..\AspnetCore.TypeSafe.Core\AspNetCore.TypeSafe.Core.csproj" />
-    <ProjectReference Include="..\..\AspnetCore.TypeSafe.Test.Shared\AspNetCore.TypeSafe.Test.Shared.csproj" />
+    <ProjectReference Include="..\AspNetCore.TypeSafe.Test.Shared\AspNetCore.TypeSafe.Test.Shared.csproj" />
   </ItemGroup>
 
 </Project>

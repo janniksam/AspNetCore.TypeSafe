@@ -4,9 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Version>1.0.0</Version>
     <Authors>janniksam</Authors>
-    <Company />
+    <Company>janniksam</Company>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Description>An exemplary implementation of the AspNetCore.TypeSafe using the RestSharp-client.</Description>
+    <Description>An exemplary client implementation of the AspNetCore.TypeSafe library using the RestSharp-client.</Description>
     <PackageLicenseUrl>https://github.com/janniksam/AspNetCore.TypeSafe/blob/master/LICENSE</PackageLicenseUrl>
     <Copyright>Copyright 2019 © janniksam</Copyright>
     <PackageIconUrl></PackageIconUrl>

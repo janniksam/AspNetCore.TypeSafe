@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>1.0.0</Version>
+    <Authors>janniksam</Authors>
+    <Company>janniksam</Company>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>An exemplary client implementation of the AspNetCore.TypeSafe library with a SignalR-client.</Description>
+    <PackageLicenseUrl>https://github.com/janniksam/AspNetCore.TypeSafe/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright 2019 © janniksam</Copyright>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageProjectUrl>https://github.com/janniksam/AspNetCore.TypeSafe</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspnetCore.TypeSafe.Core\AspNetCore.TypeSafe.Core.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -22,6 +22,7 @@ after_build:
 - cmd: dotnet pack AspNetCore.TypeSafe.Core/AspNetCore.TypeSafe.Core.csproj
 - cmd: dotnet pack AspNetCore.TypeSafe.Server/AspnetCore.TypeSafe.Server.csproj
 - cmd: dotnet pack AspNetCore.TypeSafe.Client.RestSharp/AspnetCore.TypeSafe.Client.RestSharp.csproj
+- cmd: dotnet pack AspNetCore.TypeSafe.Client.SignalR/AspnetCore.TypeSafe.Client.SignalR.csproj
 artifacts:
 - path: '**\*.nupkg'
 deploy: off

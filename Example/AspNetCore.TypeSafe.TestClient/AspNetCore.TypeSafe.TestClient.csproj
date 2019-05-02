@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\AspnetCore.TypeSafe.Client.RestSharp\AspNetCore.TypeSafe.Client.RestSharp.csproj" />
+    <ProjectReference Include="..\..\AspNetCore.TypeSafe.Client.SignalR\AspNetCore.TypeSafe.Client.SignalR.csproj" />
     <ProjectReference Include="..\..\AspnetCore.TypeSafe.Core\AspNetCore.TypeSafe.Core.csproj" />
     <ProjectReference Include="..\AspNetCore.TypeSafe.Test.Shared\AspNetCore.TypeSafe.Test.Shared.csproj" />
   </ItemGroup>

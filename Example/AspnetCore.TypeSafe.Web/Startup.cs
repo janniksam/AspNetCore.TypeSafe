@@ -1,4 +1,5 @@
 ﻿using AspnetCore.TypeSafe.Server;
+using AspNetCore.TypeSafe.Web.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,12 @@ namespace AspNetCore.TypeSafe.Web
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             
             services.AddTypeSafe();
+
+            services.AddSignalR().AddJsonProtocol(o =>
+            {
+                o.PayloadSerializerSettings.TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple;
+                o.PayloadSerializerSettings.TypeNameHandling = TypeNameHandling.Auto;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +43,7 @@ namespace AspNetCore.TypeSafe.Web
             }
 
             app.UseMvc();
+            app.UseSignalR(b => { b.MapHub<MyTypeSafeHub>("/test"); });
         }
     }
 }

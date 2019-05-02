@@ -6,11 +6,11 @@ namespace AspNetCore.TypeSafe.Client.SignalR
 {
     public abstract class SignalRServiceClientBase
     {
-        private readonly HubConnection m_connection;
+        protected readonly HubConnection Connection;
 
         protected SignalRServiceClientBase(HubConnection connection)
         {
-            m_connection = connection;
+            Connection = connection;
         }
 
         protected static object[] BuildParams(params object[] args)
@@ -20,12 +20,17 @@ namespace AspNetCore.TypeSafe.Client.SignalR
 
         protected async Task<T> InvokeAsync<T>(object[] args, [CallerMemberName]string methodName = null)
         {
-            return await m_connection.InvokeCoreAsync<T>(methodName, args).ConfigureAwait(false);
+            return await Connection.InvokeCoreAsync<T>(methodName, args).ConfigureAwait(false);
         }
 
-        protected async Task SendCoreAsync<T>(object[] args, [CallerMemberName]string methodName = null)
+        protected async Task InvokeAsync(object[] args, [CallerMemberName]string methodName = null)
         {
-            await m_connection.SendCoreAsync(methodName, args).ConfigureAwait(false);
+            await Connection.InvokeCoreAsync(methodName, args).ConfigureAwait(false);
+        }
+
+        protected async Task SendCoreAsync(object[] args, [CallerMemberName]string methodName = null)
+        {
+            await Connection.SendCoreAsync(methodName, args).ConfigureAwait(false);
         }
     }
 }

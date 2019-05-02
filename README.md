@@ -24,11 +24,17 @@ Server-Components of the AspNetCore.TypeSafe library.
 
 An exemplary client implementation of the AspNetCore.TypeSafe library using the RestSharp-client.
 
+### AspnetCore.TypeSafe.Client.SignalR
+
+[![NuGet version](https://badge.fury.io/nu/AspnetCore.TypeSafe.Client.SignalR.svg)](https://badge.fury.io/nu/AspnetCore.TypeSafe.Client.SignalR)
+
+An exemplary client implementation of the AspNetCore.TypeSafe library with a SignalR-client.
+
 ## Example usage
 
 ### Server side implementation
 
-#### Startup.cs
+#### Startup.cs (SignalR  doesn't need this step)
 
 First of all you will have to enable this framework in your Startup.cs like shown below
 
@@ -57,7 +63,11 @@ public interface IServiceInterface
 }
 ```
 
-And finally to implement the actual ServiceInterface, just implement the IServiceInterface in your Controller like this:
+#### Add a controller to process each request (SignalR  doesn't need this step)
+
+Finally, to implement the actual ServiceInterface, just implement the IServiceInterface in your Controller like this:
+
+Please not that later on our whole communication will be done `Task<object> Post(TypeSafeRequestWrapper typeSafeRequest)` by invoking the Post-method. The ResolveProvider will do the magic and forward it to each individual implemention of our interface.
 
 ```cs
 [Route("api/[controller]")]
@@ -124,3 +134,54 @@ public class ServiceClient : RestSharpServiceClientBase<IServiceInterface>, ISer
 
 This is just an example of how to do it on the client.
 Feel free to implement your own client by taking a peek at what I've done in the `RestSharpServiceClientBase`.
+
+## SignalR implementation
+
+To make SignalR request typesafe, you can use implement the Hub like this. It should look very similar to the way you'd implement it normally.
+
+### Hub implementation
+
+```cs
+public class MyTypeSafeHub : Hub, IServiceInterface
+{
+    private readonly IResolveProvider m_resolveProvider;
+
+    public MyTypeSafeHub(IResolveProvider resolveProvider)
+    {
+        m_resolveProvider = resolveProvider;
+    }
+
+    public Task<string> Foo(string name)
+    {
+        return Task.Run(() => $"Hello {name}");
+    }
+
+    public Task<SumResponse> Bar(SumRequest request)
+    {
+        return Task.FromResult(new SumResponse {SumResult = request.Number1 + request.Number2});
+    }
+}
+```
+
+### Client side implementation via RestSharp
+
+Your client can use the examplary implementaton by `SignalRServiceClientBase`
+
+```cs
+public class SignalRServiceClient : SignalRServiceClientBase, IServiceInterface
+{
+    public SignalRServiceClient(HubConnection connection) : base(connection)
+    {
+    }
+
+    public async Task<string> Foo(string name)
+    {
+        return await InvokeAsync<string>(BuildParams(name)).ConfigureAwait(false);
+    }
+
+    public async Task<SumResponse> Bar(SumRequest request)
+    {
+        return await InvokeAsync<SumResponse>(BuildParams(request)).ConfigureAwait(false);
+    }
+}
+```

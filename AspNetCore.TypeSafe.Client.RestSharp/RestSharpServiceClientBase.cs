@@ -9,13 +9,10 @@ using RestSharp;
 
 namespace AspnetCore.TypeSafe.Client.RestSharp
 {
-    public abstract class RestSharpServiceClientBase<TServiceInterface> where TServiceInterface : class
+    public abstract class RestSharpServiceClientBase : RestClient
     {
-        private readonly RestClient m_client;
-
-        protected RestSharpServiceClientBase(string url) 
+        protected RestSharpServiceClientBase(string url) : base(url)
         {
-            m_client = new RestClient(url);
         }
 
         protected static object[] BuildParams(params object[] args)
@@ -37,7 +34,7 @@ namespace AspnetCore.TypeSafe.Client.RestSharp
 
         protected async Task<T> PostAsync<T>(IRestRequest request)
         {
-            var response = await m_client.ExecutePostTaskAsync<T>(request).ConfigureAwait(false);
+            var response = await ExecutePostTaskAsync<T>(request).ConfigureAwait(false);
             if (response.IsSuccessful)
             {
                 return response.Data;

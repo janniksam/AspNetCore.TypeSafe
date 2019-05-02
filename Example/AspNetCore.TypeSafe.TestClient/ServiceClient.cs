@@ -1,12 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AspnetCore.TypeSafe.Client.RestSharp;
 using AspnetCore.TypeSafe.Test.Shared;
-using RestSharp;
 
 namespace AspnetCore.TypeSafe.TestClient
 {
-    public class ServiceClient : RestSharpServiceClientBase<IServiceInterface>, IServiceInterface
+    public class ServiceClient : RestSharpServiceClientBase, IServiceInterface
     {
         public ServiceClient(string url) : base(url)
         {

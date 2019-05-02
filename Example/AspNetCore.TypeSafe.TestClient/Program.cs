@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using AspnetCore.TypeSafe.Client.RestSharp;
-using AspnetCore.TypeSafe.Core;
 using AspnetCore.TypeSafe.Test.Shared;
 using AspnetCore.TypeSafe.TestClient;
-using AspnetCore.TypeSafe.TestClient.Serializer;
-using RestSharp;
 
-namespace TestClient
+namespace AspNetCore.TypeSafe.TestClient
 {
     class Program
     {
